@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome - Cars for the Passionate</title>
+  <meta name="description" content="A clean, modern car showroom website built with only HTML and CSS." />
+
+  <style>
+    /* ---------- Variables & Reset ---------- */
+    :root{
+   --bg: #111111;          /* Racing dark gray */
+  --card: #1c1c1c;        /* Slightly lighter cards */
+  --muted: #9e9e9e;       /* Neutral gray text */
+  --accent: #ff3c00;      /* Racing orange-red */
+  --accent2: #007bff;     /* Electric blue */
+  --glass: rgba(255,255,255,0.05);
+  --radius: 12px;
+  --max-width: 1200px;
+  --ff: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff);
+      background: linear-gradient(180deg,#06131f 0%, #071827 100%);
+      color:#eaf2fb;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:28px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--max-width)}
+
+    /* ---------- Header / Nav ---------- */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:28px;
+    }
+    .brand
+    {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      text-decoration:none;
+      color:inherit
+    }
+    .logo{
+      width:52px;height:52px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),#ff876a);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;color:white;font-size:20px;box-shadow:0 8px 22px rgba(255,77,77,0.12)
+    }
+    .brand h1{
+      margin:0;
+      font-size:18px}
+    
+      .brand p
+    {margin:0;
+      font-size:12px;
+      color:var(--muted)
+    }
+
+    nav{display:flex;
+      gap:14px;
+      align-items:center}
+    nav a{color:var(--muted);
+      text-decoration:none;
+      padding:8px 12px;
+      border-radius:8px}
+    nav a.cta{background:linear-gradient(90deg,var(--accent),#ff9154);
+      color:white;
+      font-weight:700}
+
+    /* ---------- Hero ---------- */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 380px;
+      gap:24px;
+      align-items:center;
+      margin-bottom:36px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:22px;border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 12px 36px rgba(2,6,23,0.5);
+    }
+    .kicker{color:var(--accent2);font-weight:700;font-size:13px;letter-spacing:0.7px}
+    .hero h2{
+      margin:12px 0 10px;
+      font-size:32px}
+    .hero p{color:var(--muted);
+      margin:0 0 16px
+    }
+
+    .actions{display:flex;
+      gap:12px}
+    .btn{
+      padding:12px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn.primary{
+      background:linear-gradient(90deg,var(--accent),#ff7a7a);
+      color:white
+    }
+    .btn.ghost
+    {
+      border:1px solid rgba(255,255,255,0.05);
+      color:var(--muted);
+      background:transparent
+    }
+
+    /* ---------- Featured card ---------- */
+    .featured
+    {
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .thumb{
+      height:170px;
+      border-radius:10px;
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+    .meta{display:flex;
+      justify-content:space-between;
+      align-items:center}
+
+    /* ---------- Models grid ---------- */
+    .section
+    {
+      margin-bottom:34px
+    }
+    .section h3
+    {
+      margin:0 0 16px
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+    .model{
+      padding:14px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      transition:transform .25s ease, box-shadow .25s ease;border:1px solid rgba(255,255,255,0.03)
+    }
+    .model:hover
+    {transform:translateY(-8px);
+      box-shadow:0 18px 40px rgba(2,6,23,0.5)
+    }
+    .model .img{
+      height:140px;
+      border-radius:10px;
+      background-size:cover;
+      background-position:center;
+      margin-bottom:10px
+    }
+    .badges{display:flex;
+      gap:8px;
+      margin-bottom:8px}
+    .badge{background:rgba(255,255,255,0.02);
+      padding:6px 8px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted)
+    }
+
+    /* ---------- Gallery ---------- */
+    .gallery{display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px
+    }
+    .g{aspect-ratio:16/10;
+      border-radius:10px;
+      background-size:cover;
+      background-position:center;
+      border:1px solid rgba(255,255,255,0.02)}
+
+    /* ---------- Features ---------- */
+    .features{display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px}
+    .feature{text-align:center;
+      padding:18px;
+      border-radius:10px;
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.02)
+    }
+
+    /* ---------- Contact & Footer ---------- */
+    .contact-grid{display:grid;
+      grid-template-columns:1fr 360px;
+      gap:16px;
+      align-items:start
+    }
+    .form-el{
+      display:block;
+      width:100%;padding:10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.03);
+      background: #1c1c1c;
+      color: #eaf2fb;  
+      margin-bottom:10px;
+      border: 1px solid #333;
+    }
+
+
+.form-el option {
+  background: #1c1c1c; 
+  color: #eaf2fb;      
+  padding: 6px;
+}
+
+
+.form-el option:hover {
+  background: #ff3c00; 
+  color: #fff;
+}
+
+
+.form-el option:checked {
+  background: #ff3c00;
+  color: #fff;
+}
+
+    .social 
+    {display:flex;
+      gap:8px;
+      margin-top:12px
+    }
+
+    .social a
+
+    {
+      width:36px;height:36px;
+      border-radius:8px;
+      background:var(--glass);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--muted);
+      text-decoration:none;
+      transition:all 0.3s ease;
+    }
+    .social a:hover {background:rgba(255,255,255,0.1);transform:scale(1.1)}
+    .social a:hover .fa-instagram {color:#e4405f}
+    .social a:hover .fa-twitter {color:#1da1f2}
+    .social a:hover .fa-facebook-f {color:#1877f2}
+    .social a:hover .fa-linkedin {color:#1877f2}
+
+    footer{
+      margin-top:26px;
+      padding:16px;
+      border-radius:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border:1px solid rgba(255,255,255,0.02);
+      display:flex;justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .credit{color:var(--muted);font-size:14px}
+
+    /* ---------- Responsiveness ---------- */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+      nav{display:none}
+    }
+    @media (max-width:640px){
+      body{padding:18px}
+      .grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .hero h2{font-size:24px}
+    }
+
+    /* small utility */
+    .muted{color:var(--muted);font-size:13px}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Header -->
+    <header>
+      <a class="brand" href="#">
+        <div class="logo">H</div>
+        <div>
+          <h1>Harshal</h1>
+          <p>Drive with passion</p>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#models">Models</a>
+        <a href="#showroom">Showroom</a>
+        <a href="#features">Why Us</a>
+        <a class="cta" href="#contact">Book Test Drive</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <main>
+      <section class="hero">
+        <div class="card">
+          <div class="kicker">NEW ARRIVALS</div>
+          <h2>Hand-picked performance cars for spirited drivers.</h2>
+          <p class="muted">Explore our curated fleet — from agile coupes to comfortable luxury cruisers. No scripts, just style.</p>
+
+          <div class="actions" style="margin-top:16px">
+            <a class="btn primary" href="#models">Explore Models</a>
+            <a class="btn ghost" href="#showroom">View Showroom</a>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:18px">
+            <div style="flex:1" class="small">
+              <strong style="display:block;font-size:18px">120+</strong>
+              Cars in stock
+            </div>
+            <div style="flex:1" class="small">
+              <strong style="display:block;font-size:18px">45</strong>
+              Brands
+            </div>
+            <div style="flex:1" class="small">
+              <strong style="display:block;font-size:18px">10k+</strong>
+              Happy drivers
+            </div>
+          </div>
+        </div>
+
+        <aside class="card featured" aria-label="Featured car">
+          <div class="meta">
+            <div class="small">Featured</div>
+            <div style="color:var(--accent);font-weight:800">From $189 / day</div>
+          </div>
+
+          <div class="thumb" style="background-image:url('D:/Cars/images/Lambo1.jpg');"></div>
+
+          <div>
+            <h3 style="margin:6px 0 4px">Lamborghini Gallardo</h3>
+            <div class="small">V10 · 5.2L · 2-seat · Manual</div>
+            <p class="muted" style="margin-top:8px">Pure Italian engineering — track-ready with refined comfort for the open road.</p>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Models -->
+      <section class="section" id="models">
+        <h3>Featured Models</h3>
+        <div class="grid" role="list">
+          <article class="model" role="listitem">
+            <div class="img" style="background-image:url('D:/Cars/images/lambo.jpg');"></div>
+            <div class="badges"><span class="badge">Coupe</span><span class="badge">Manual</span></div>
+            <h4>Apex R1</h4>
+            <p class="muted">Compact supercar with raw handling and a high-revving engine.</p>
+          </article>
+
+          <article class="model" role="listitem">
+            <div class="img" style="background-image:url('D:/Cars/images/convertable.jpg');"></div>
+            <div class="badges"><span class="badge">Convertible</span><span class="badge">Auto</span></div>
+            <h4>SunRunner</h4>
+            <p class="muted">Open-top comfort, serene cruise mode for coastal drives.</p>
+          </article>
+
+          <article class="model" role="listitem">
+            <div class="img" style="background-image:url('D:/Cars/images/Pagani.jpg');"></div>
+            <div class="badges"><span class="badge">Luxury</span><span class="badge">Hybrid</span></div>
+            <h4>Opulence S</h4>
+            <p class="muted">Executive-level comfort with a whisper-quiet cabin.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Showroom / Gallery -->
+      <section class="section" id="showroom">
+        <h3>Showroom</h3>
+        <div class="gallery" aria-label="Car gallery">
+          <div class="g" style="background-image:url('D:/Cars/images/MAc.jpg');"></div>
+          <div class="g" style="background-image:url('D:/Cars/images/Mustang.jpg');"></div>
+          <div class="g" style="background-image:url('D:/Cars/images/Rolls.jpg');"></div>
+          <div class="g" style="background-image:url('D:/Cars/images/Porcshe.jpg');"></div>
+        </div>
+      </section>
+
+      <!-- Why choose us -->
+      <section class="section" id="features">
+        <h3>Why choose Velocity</h3>
+        <div class="features">
+          <div class="feature">
+            <strong>Curated Fleet</strong>
+            <p class="muted" style="margin-top:8px">Every car is inspected for performance and comfort.</p>
+          </div>
+          <div class="feature">
+            <strong>Flexible Plans</strong>
+            <p class="muted" style="margin-top:8px">Hourly, daily or long-term — pick what suits you.</p>
+          </div>
+          <div class="feature">
+            <strong>24/7 Support</strong>
+            <p class="muted" style="margin-top:8px">Roadside assistance and concierge services available.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="section" id="contact" aria-label="Contact">
+        <h3>Book a Test Drive</h3>
+        <div class="card contact-grid">
+          <div>
+            <p class="muted" style="margin-top:0">Tell us which car you want to try and when — we'll contact you to confirm.</p>
+
+            <!-- Visual-only form (no JS) -->
+            <form style="margin-top:12px">
+              <input class="form-el" type="text" placeholder="Your name" />
+              <input class="form-el" type="email" placeholder="Email" />
+              <input class="form-el" type="tel" placeholder="Phone" />
+             <select class="form-el">
+                      <option>Choose a model</option>
+                      <option>Lamborghini Gallardo</option>
+                      <option>Apex R1</option>
+                      <option>SunRunner</option>
+                      <option>Opulence S</option>
+                      <option>McLaren</option>
+                      <option>Mustang</option>
+                      <option>Rolls Royce</option>
+                      <option>Porsche</option>
+                    </select>
+              <textarea class="form-el" placeholder="Preferred date & message" style="min-height:110px"></textarea>
+              <a class="btn primary" href="#contact" style="display:inline-block;margin-top:6px">Request Test Drive</a>
+            </form>
+          </div>
+
+          <aside>
+            <h4 style="margin-top:0">Visit our showroom</h4>
+            <p class="muted">123 beverly hills, Hollywood</p>
+            <p class="muted">Open daily • 9:00 AM — 7:00 PM PST</p>
+            <p class="muted">Follow us</p>
+
+             <div class="social">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div>
+        <strong>Motors</strong>
+        <div class="credit">© 2025 Harshal Motors — All rights reserved.</div>
+      </div>
+
+      <!-- Your name displayed here as requested -->
+      <div style="text-align:right">
+        <div class="small">Designed by</div>
+        <div style="font-weight:700">Harshal Sawant</div>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
